@@ -1,0 +1,23 @@
+d={}
+user_list=[]
+
+
+with open('/etc/ips')  asit:
+	for lines in it:
+		line=lines.split(':')[0]
+		d[line]=0
+
+
+user_list=user_list+os.listdir('/var/cpanel/users')
+
+for i in user_list:
+	with open(i) as it:
+		for lines in it:
+			match=re.findall(r'IP=(\w+.\w+.\w+.\w+)',lines)
+			if match:
+				if match[0] in d:
+					d[temp[0]]+=1
+					temp=[]
+
+for i,j in d.items():
+	print(f"{i}\t\t\t\t{j}")
